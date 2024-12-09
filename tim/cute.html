@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bất Ngờ!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #fbc2eb, #a18cd1);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Để trái tim không tràn khỏi màn hình */
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        img {
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            cursor: pointer; /* Thêm con trỏ khi hover */
+            transition: transform 1s ease-in-out; /* Thêm hiệu ứng xoay mượt mà */
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #fff;
+            color: #a18cd1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .heart {
+            position: absolute;
+            width: 40px; /* Tăng kích thước trái tim */
+            height: 40px;
+            background-color: #ff6b6b; /* Đổi màu đỏ tươi hơn */
+            transform: none; /* Xóa xoay */
+            animation: float 4s ease-in infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 40px; /* Kích thước tương đồng với phần chính */
+            height: 40px;
+            background-color: #ff6b6b;
+            border-radius: 50%; /* Tạo hình tròn cho 2 phần */
+        }
+        .heart::before {
+            top: -25px; /* Điều chỉnh để phần tròn nằm chính xác */
+            left: 0;
+        }
+        .heart::after {
+            top: 0;
+            left: 25px; /* Đặt vị trí để tạo trái tim */
+        }
+        .small-heart {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-color: #ffcccc;
+            transform: rotate(-45deg);
+            top: 40px;
+            left: 40px;
+        }
+
+        .small-heart::before,
+        .small-heart::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-color: #ffcccc;
+            border-radius: 50%;
+        }
+
+        .small-heart::before {
+            top: -17.5px;
+            left: 0;
+        }
+
+        .small-heart::after {
+            left: 17.5px;
+            top: 0;
+        }
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-500px) scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3><p id="message" style="color: #42b881;">Rất Sô Cu Te Từ Nhỏ Nhìn Rất Chi Là Good Men Girl -- Vui vẻ hông quạo nhaaa hehehe 💖❤️💖</p></h3>
+    <h4><p style="color: #42b881;">Chúc 1 ngày sinh nhật vui vẻ nhá 💖❤️💖</p></h4><h3><p>Nhấp Vào Hình Đi </p></h3> 
+    <img id="image" src="cute.jpg" alt="Cute Surprise" onclick="changeImage()" > <br>
+    <button class="btn" onclick="window.location.href='index.html'">Quay lại</button>
+
+    <script>
+        // Hàm thay đổi hình ảnh và chữ khi nhấp vào hình
+        function changeImage() {
+            const image = document.getElementById('image');
+            const title = document.getElementById('title');
+            const message = document.getElementById('message');
+
+            // Thay đổi hình ảnh ngay lập tức
+            if (image.src.includes('cute.jpg')) {
+                image.src = 'anhcute'; // Đổi thành hình ảnh khác
+                message.innerHTML = ' Đây Mới Đẹp Há HiHiHi '; // Thay đổi thông điệp
+            } else {
+                image.src = 'cute.jpg'; // Quay lại hình ảnh ban đầu
+                title.innerHTML = 'Bất Ngờ Dành Cho Bè Giè 🎉🎉🎉'; // Thay đổi lại tiêu đề ban đầu
+                message.innerHTML = 'Rất Sô Cu Te Từ Nhỏ Nhìn Rất Chi Là Good Men Girl 💖❤️💖'; // Thay đổi lại thông điệp ban đầu
+            }
+
+            // Thêm hiệu ứng xoay
+            image.style.transition = 'transform 1s ease-in-out';
+            image.style.transform = 'rotateY(180deg)';
+
+            // Sau 1 giây (thời gian xoay hoàn tất), xoay lại hình ảnh
+            setTimeout(() => {
+                image.style.transform = 'rotateY(0deg)';
+            }, 1000); // Thời gian xoay là 1 giây
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            const isLarge = Math.random() > 0.25; // Ngẫu nhiên chọn trái tim lớn hoặc nhỏ
+            heart.className = isLarge ? 'heart large-heart' : 'heart small-heart';
+
+            // Đặt vị trí ngẫu nhiên trên toàn màn hình
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+
+            document.body.appendChild(heart);
+
+            // Xóa trái tim sau khi bay xong
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        // Tạo trái tim mới mỗi 200ms
+        setInterval(createHeart, 150);
+    </script>
+</body>
+</html>

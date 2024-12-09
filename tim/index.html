@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative; /* Để các yếu tố khác như mây có thể phủ lên */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #ff9a9e;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff9a9e;
+            color: #fff;
+        }
+
+        .heart {
+            font-size: 5em;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Hiệu ứng tạo ra các trái tim nhỏ ngẫu nhiên */
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-500px) scale(0.5);
+            }
+        }
+
+        .small-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffcccc;
+            transform: rotate(-45deg);
+            animation: float 4s ease-in infinite;
+        }
+
+        .small-heart::before,
+        .small-heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffcccc;
+            border-radius: 50%;
+        }
+
+        .small-heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .small-heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        /* Hiệu ứng mây bay */
+        .cloud {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background: url('https://www.transparenttextures.com/patterns/clouds.png') repeat;
+            background-size: contain;
+            opacity: 0.3;
+            animation: moveCloud 10s linear infinite;
+        }
+
+        @keyframes moveCloud {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Các đám mây nền -->
+    <div class="cloud" style="top: 10%; left: -200px;"></div>
+    <div class="cloud" style="top: 20%; left: -200px;"></div>
+    <div class="cloud" style="top: 30%; left: -200px;"></div>
+    <div class="cloud" style="top: 40%; left: -200px;"></div>
+    
+    <h1>Chúc Mừng Sinh Nhật!</h1>
+    <h2><p>Chúc cô gái trẻ luôn sanh đẹp, luôn vui vẻ và đạt được mọi ước mơ nhó ! ❤️</p></h2>
+    <div class="heart">💖</div>
+    <button class="btn" onclick="window.location.href='cute.html'">Nhấn vào đây đi happy lắm đấy</button>
+
+    <script>
+        function createSmallHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'small-heart';
+
+            // Vị trí ngẫu nhiên trên màn hình
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+
+            document.body.appendChild(heart);
+
+            // Xóa trái tim nhỏ sau khi bay xong
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        // Tạo trái tim nhỏ mỗi 300ms
+        setInterval(createSmallHeart, 300);
+    </script>
+</body>
+</html>
